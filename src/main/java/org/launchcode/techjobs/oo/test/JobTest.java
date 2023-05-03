@@ -47,4 +47,22 @@ public class JobTest {
         assertNotEquals(id1,id2);
     }
 
+    @Test
+    public void testToStringStartAndEndsWithNewLine() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String string = "ID: \n" + "Name: \n" + "Employer: \n" + "Location: \n" + "Position Type: \n" + "Core Competency: \n";
+
+        assertEquals(string.charAt(0), job1.toString().charAt(0));
+
+        assertEquals(string.length() -1, job1.toString().toString().length() - 1);
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        String string = "ID:" + job1.getId() + "\n" + "Name:" + job1.getName() + "\n" + "Employer:" + job1.getEmployer() + "\n" + "Location:" + job1.getLocation() + "\n" + "Position Type:" + job1.getPositionType() + "\n" + "Core Competency:" + job1.getCoreCompetency();
+        assertEquals(string, job1.toString());
+    }
+
 }
