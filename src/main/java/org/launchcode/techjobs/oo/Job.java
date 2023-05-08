@@ -39,12 +39,12 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id && Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
+        return id == job.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employer, location, positionType, coreCompetency);
+        return Objects.hash(id);
     }
 
 
@@ -98,12 +98,20 @@ public class Job {
 
     @Override
     public String toString() {
-        return  "ID:" + getId() + "\n" +
-                "Name:" + getName() + "\n" +
-                "Employer:" + getEmployer() + "\n" +
-                "Location:" + getLocation() + "\n" +
-                "Position Type:" + getPositionType() + "\n" +
-                "Core Competency:" + getCoreCompetency();
+
+        if(this.employer.getValue().equals("")){
+            this.employer.setValue("Data not available");
+        }
+        if(this.positionType.getValue().equals("")) {
+            this.positionType.setValue("Data not available");
+        }
+
+        return  "\n" + "ID: " + getId() + "\n" +
+                "Name: " + getName() + "\n" +
+                "Employer: " + getEmployer() + "\n" +
+                "Location: " + getLocation() + "\n" +
+                "Position Type: " + getPositionType() + "\n" +
+                "Core Competency: " + getCoreCompetency() + "\n";
     }
 
 
